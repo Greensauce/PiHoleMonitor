@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name=""/>
+
+  <group name="General">
+    <entry name="piholeHost" type="String">
+      <label>Pi-hole IP Address or Hostname</label>
+      <default>192.168.1.100</default>
+    </entry>
+    
+    <entry name="piholeApiKey" type="String">
+      <label>Pi-hole App Password</label>
+      <default></default>
+    </entry>
+    
+    <entry name="updateInterval" type="Int">
+      <label>Status update interval in seconds</label>
+      <default>30</default>
+      <min>3</min>
+      <max>300</max>
+    </entry>
+    
+    <entry name="widgetTitle" type="String">
+      <label>Widget Title Text</label>
+      <default>Pi-hole Status</default>
+    </entry>
+    
+    <entry name="showTitle" type="Bool">
+      <label>Show widget title in expanded view</label>
+      <default>true</default>
+    </entry>
+  </group>
+</kcfg>

@@ -1,0 +1,47 @@
+# Build artifacts
+*.tar.gz
+*.zip
+dist/
+build/
+
+# Cache files
+*.cache
+*~
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# User-specific files
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Package manager
+node_modules/
+package-lock.json
+yarn.lock
+
+# Output files
+outputs/
+
+# Screenshot placeholders (until real ones added)
+docs/screenshots/*.png.placeholder

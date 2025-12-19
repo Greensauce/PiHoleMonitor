@@ -1,0 +1,19 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "",
+                "Name": "Bryan Greenaway & Claude"
+            }
+        ],
+        "Category": "System Information",
+        "Description": "Monitor and control your Pi-hole DNS blocker from your desktop",
+        "Icon": "preferences-system-network",
+        "Id": "org.kde.plasma.pihole",
+        "License": "MIT",
+        "Name": "Pi-hole Monitor",
+        "Version": "3.2.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

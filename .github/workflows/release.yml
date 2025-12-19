@@ -1,0 +1,47 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+      - name: Create release package
+        run: |
+          mkdir -p pihole-plasma-widget
+          cp -r org.kde.plasma.pihole pihole-plasma-widget/
+          cp install-widget.sh pihole-plasma-widget/
+          cp README.md pihole-plasma-widget/
+          cp LICENSE pihole-plasma-widget/
+          cp docs/QUICKSTART.md pihole-plasma-widget/
+          tar -czf pihole-plasma-widget-${{ steps.get_version.outputs.VERSION }}.tar.gz pihole-plasma-widget/
+      
+      - name: Extract changelog for this version
+        id: changelog
+        run: |
+          # Extract the relevant section from CHANGELOG.md
+          # This is a simplified version - adjust as needed
+          echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+          sed -n '/^## \[${{ steps.get_version.outputs.VERSION }}\]/,/^## \[/p' CHANGELOG.md | sed '$d' >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: pihole-plasma-widget-${{ steps.get_version.outputs.VERSION }}.tar.gz
+          body: ${{ steps.changelog.outputs.CHANGELOG }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
