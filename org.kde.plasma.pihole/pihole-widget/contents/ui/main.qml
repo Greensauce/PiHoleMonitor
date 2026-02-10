@@ -134,6 +134,7 @@ PlasmoidItem {
 
         RowLayout {
             anchors.centerIn: parent
+            width: Math.min(implicitWidth, parent.width)
             spacing: Kirigami.Units.smallSpacing
 
             Rectangle {
@@ -159,14 +160,18 @@ PlasmoidItem {
                 }
             }
 
-            PlasmaComponents3.Label {
+            Text {
+                Layout.fillWidth: true
                 text: {
                     if (status === "unconfigured") return "Config"
                     if (status === "error") return "Error"
                     if (!isEnabled && timeRemaining > 0) return "Paused " + PiHole.formatTime(timeRemaining)
                     return isEnabled ? "Active" : "Disabled"
                 }
+                color: Kirigami.Theme.textColor
                 font.pointSize: Kirigami.Theme.smallFont.pointSize
+                fontSizeMode: Text.HorizontalFit
+                minimumPointSize: Math.round(Kirigami.Theme.smallFont.pointSize * 0.6)
             }
         }
     }
